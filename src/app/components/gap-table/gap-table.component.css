@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+}
+
+.filter-row th {
+    border-bottom: none;
+}
+
+input {
+    width: 90%;
+}
+
+.mat-column-name {
+
+}
+
+.mat-column-string {
+
+}
+
+.mat-column-size {
+    
+}
+
+.mat-column-notes {
+
+}

@@ -1,0 +1,78 @@
+<table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Character Name column-->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Character</th>
+        <td mat-cell *matCellDef="let gap">{{gap.name}}</td>
+    </ng-container>
+
+    <!-- Character Name filter -->
+    <ng-container matColumnDef="name-filter">
+        <th mat-header-cell *matHeaderCellDef>
+            <mat-form-field>
+                <mat-label>Filter by Character</mat-label>
+                <input matInput type="text" [(ngModel)]="nameFilterValue" (ngModelChange)="doFilter()">
+                <button mat-button *ngIf="nameFilterValue" matSuffix mat-icon-button aria-label="Clear" (click)="clearNameFilter()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </th>
+    </ng-container>
+
+    <!-- String column-->
+    <ng-container matColumnDef="string">
+        <th mat-header-cell *matHeaderCellDef>String</th>
+        <td mat-cell *matCellDef="let gap">{{gap.string}}</td>
+    </ng-container>
+
+    <!-- String filter -->
+    <ng-container matColumnDef="string-filter">
+        <th mat-header-cell *matHeaderCellDef></th>
+    </ng-container>
+
+    <!-- Gap Size column-->
+    <ng-container matColumnDef="size">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Gap Size</th>
+        <td mat-cell *matCellDef="let gap">{{gap.size}}</td>
+    </ng-container>
+
+    <!-- Gap Size filter -->
+    <ng-container matColumnDef="size-filter">
+        <th mat-header-cell *matHeaderCellDef>
+            <mat-form-field>
+                <mat-label>Filter by Gap Size</mat-label>
+                <input matInput type="text" [(ngModel)]="sizeFilterValue" (ngModelChange)="doFilter()">
+                <button mat-button *ngIf="sizeFilterValue" matSuffix mat-icon-button aria-label="Clear" (click)="clearSizeFilter()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </th>
+    </ng-container>
+
+    <!-- Notes column-->
+    <ng-container matColumnDef="notes">
+        <th mat-header-cell *matHeaderCellDef>Notes</th>
+        <td mat-cell *matCellDef="let gap">{{gap.notes}}</td>
+    </ng-container>
+
+    <!-- Notes filter -->
+    <ng-container matColumnDef="notes-filter">
+        <th mat-header-cell *matHeaderCellDef>
+            <mat-form-field>
+                <mat-label>Filter by Notes</mat-label>
+                <input matInput type="text" [(ngModel)]="notesFilterValue" (ngModelChange)="doFilter()">
+                <button mat-button *ngIf="notesFilterValue" matSuffix mat-icon-button aria-label="Clear" (click)="clearNotesFilter()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </th>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['name-filter', 'string-filter', 'size-filter', 'notes-filter']" class="filter-row"></tr>
+    <tr mat-header-row *matHeaderRowDef="columnDef; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnDef;"></tr>
+    <!-- Row shown when there is no matching data from the filter. -->
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filters</td>
+    </tr>
+</table>
