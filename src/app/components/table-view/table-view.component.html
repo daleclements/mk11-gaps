@@ -1,12 +1,13 @@
 <div id="view-container">
     <mat-card id="table-card" class="mat-elevation-z8">
+        <div id="table-container">
+            <div *ngIf="gap$ | async as gaps; else loading">
+                <app-gap-table [gapData]="gaps"></app-gap-table>
+            </div>
 
-        <div *ngIf="gap$ | async as gaps; else loading">
-            <app-gap-table [gapData]="gaps"></app-gap-table>
+            <ng-template #loading>
+                <div>Loading...</div>
+            </ng-template>
         </div>
-
-        <ng-template #loading>
-            <div>Loading...</div>
-        </ng-template>
     </mat-card>
 </div>
